@@ -28,6 +28,9 @@ env_variables:
   ELASTICSEARCH_INDEX_PREFIX: "rental_search"
   ELASTICSEARCH_REAL_ESTATE_INDEX: "rental_search_real_estate"
   ELASTICSEARCH_CONVERSATIONS_INDEX: "rental_search_conversations"
+  
+  # CORS Configuration
+  CORS_ORIGINS: "https://smart-dwell.vercel.app,http://localhost:3000,http://localhost:3001"
 
 # Entry point
 entrypoint: uvicorn main:app --host 0.0.0.0 --port $PORT

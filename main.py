@@ -116,12 +116,16 @@ app = FastAPI(
     openapi_url="/openapi.json"
 )
 
+# CORS Configuration
+CORS_ORIGINS = os.getenv("CORS_ORIGINS", "https://smart-dwell.vercel.app,http://localhost:3000,http://localhost:3001").split(",")
+CORS_ORIGINS = [origin.strip() for origin in CORS_ORIGINS if origin.strip()]
+
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Configure this properly for production
+    allow_origins=CORS_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
