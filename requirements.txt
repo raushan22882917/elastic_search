@@ -1,0 +1,17 @@
+# FastAPI Production Requirements
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+elasticsearch==8.11.0
+aiohttp==3.9.1
+numpy==1.24.3
+requests==2.31.0
+python-dotenv==1.0.0
+python-multipart==0.0.6
+pydantic==2.5.0
+
+# AI and Configuration Dependencies
+pydantic-settings==2.0.3
+tenacity==8.2.3
+google-cloud-aiplatform==1.71.1
+vertexai==1.71.1
+google-generativeai==0.3.2

@@ -1,0 +1,41 @@
+# Google Cloud Platform Deployment Configuration
+
+# App Engine Configuration
+runtime: python311
+env: standard
+
+# Automatic scaling
+automatic_scaling:
+  min_instances: 1
+  max_instances: 10
+  target_cpu_utilization: 0.6
+  target_throughput_utilization: 0.6
+
+# Environment variables
+env_variables:
+  ENVIRONMENT: "production"
+  GOOGLE_CLOUD_PROJECT: "data-417505"
+  GOOGLE_CLOUD_LOCATION: "us-central1"
+  APP_NAME: "AI-Powered Rental Accommodation Platform"
+  APP_VERSION: "2.0.0"
+  SECRET_KEY: "your-super-secret-key-change-this-in-production"
+  DEBUG: "false"
+  LOG_LEVEL: "INFO"
+  
+  # Elasticsearch Configuration
+  ELASTICSEARCH_URL: "https://rentalsearch-cb235a.es.asia-south1.gcp.elastic.cloud:443"
+  ELASTICSEARCH_API_KEY: "U2tCdUQ1b0JIWEFRUE15N0lkVVE6MzBoelBKSUNZNmw1WF9QV1N1cjdtUQ=="
+  ELASTICSEARCH_INDEX_PREFIX: "rental_search"
+  ELASTICSEARCH_REAL_ESTATE_INDEX: "rental_search_real_estate"
+  ELASTICSEARCH_CONVERSATIONS_INDEX: "rental_search_conversations"
+
+# Entry point
+entrypoint: uvicorn main:app --host 0.0.0.0 --port $PORT
+
+# Handlers
+handlers:
+- url: /.*
+  script: auto
+  secure: always
+
+# Skip files are handled by .gcloudignore file
